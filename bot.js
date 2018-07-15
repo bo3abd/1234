@@ -7,142 +7,19 @@ const YouTube = require('simple-youtube-api');
 const youtube = new YouTube("AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8");
 const queue = new Map();
 const client = new Discord.Client();
-///////////////////////////
 
 
 
+/*
+البكجآت
+npm install discord.js
+npm install ytdl-core
+npm install get-youtube-id
+npm install youtube-info
+npm install simple-youtube-api
+npm install queue
+*/
 
-client.on('message', message => {
-                    var prefix = "#";
-
-           if (message.content.startsWith(prefix + "id")) {
-                     if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
-
-                message.guild.fetchInvites().then(invs => {
-      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
-      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-      var moment = require('moment');
-      var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
- var heg;
- if(men) {
-     heg = men
- } else {
-     heg = message.author
- }
-var mentionned = message.mentions.members.first();
-  var h;
- if(mentionned) {
-     h = mentionned
- } else {
-     h = message.member
- }
-        moment.locale('ar-TN');
-      var id = new  Discord.RichEmbed()
-       
-     .setColor('RANDOM')
-   .setThumbnail(message.author.avatarURL)
-.addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true) 
-.addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
-.addField(` :لقد قمت بدعوة `, ` ${inviteCount} `)
-           .setFooter(` By: ${message.author.tag}`);
-
-    message.channel.sendEmbed(id);
-})
-}
-    
-
-         
-     });
-
-
-
-
-
-
-
-
-////////////////////////////
-client.on("message", message => {
-  if (message.content.startsWith("#bc")) {
-               if (!message.member.hasPermission("ADMINISTRATOR"))  return;
-let args = message.content.split(" ").slice(1);
-var argresult = args.join(' ');
-message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
-m.send(`${argresult}\n ${m}`);
-})
-message.channel.send(`\`${message.guild.members.filter( m => m.presence.status !== 'all').size}\` عدد الأشخاص `);
-message.delete();
-};
-});
-
-
-
-
-
-
-
-
-//////////////////////-------------
-
-	 
-	client.on('message', message => {
-    if (message.content.startsWith("رابط")) {
-
-  message.channel.createInvite({
-        thing: true,
-        maxUses: 2,
-        maxAge: 86400
-    }).then(invite =>
-      message.author.sendMessage(invite.url)
-    )
-  message.channel.send("**تم ارسال الرابط برسالة خاصة**")
-
-message.author.send(`**مدة الرابط : يـوم
-عدد استخدامات الرابط : 2**`)
- 
-
-
-    }
-});
-
-
-///////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log(`in ${client.guilds.size} servers `)
@@ -151,7 +28,7 @@ console.log(`[M] ${client.users.size}`)
 });
 
 
-const prefix = "5"
+const prefix = "2"
 client.on('message', async msg => { // eslint-disable-line
 	if (msg.author.bot) return undefined;
 	if (!msg.content.startsWith(prefix)) return undefined;
@@ -342,9 +219,7 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`بدء تشغيل : **${song.title}**`);
 }
 
-
-
-const adminprefix = "A";
+const adminprefix = "2";
 const devs = ['415649344864387072'];
 client.on('message', message => {
   var argresult = message.content.split(` `).slice(1).join(' ');
@@ -364,117 +239,11 @@ client.user.setAvatar(argresult);
   message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
       } else     
 if (message.content.startsWith(adminprefix + 'setT')) {
-  client.user.setGame(argresult, "https://www.twitch.tv/idk");
+  client.user.setGame(argresult, "https://www.twitch.tv/vvrrkk");
     message.channel.sendMessage(`**تم تغيير تويتش البوت إلى  ${argresult}**`)
 }
 
 });
-
-
-
-client.on("message", message => {
- if (message.content === `Ahelp`) {
-  const embed = new Discord.RichEmbed() 
-      .setColor("#000000")
-      .setDescription(`
-${prefix}play > لتشغيل أغنية برآبط أو بأسم
-${prefix}skip > لتجآوز الأغنية الحآلية
-${prefix}pause > إيقآف الأغنية مؤقتا
-${prefix}resume > لموآصلة الإغنية بعد إيقآفهآ مؤقتا
-${prefix}vol > لتغيير درجة الصوت 100 - 0
-${prefix}stop > لإخرآج البوت من الروم
-${prefix}np > لمعرفة الأغنية المشغلة حآليا
-${prefix}queue > لمعرفة قآئمة التشغيل
- `)
-   message.channel.sendEmbed(embed)
-    
-   }
-   }); 
-
-
-
-
-client.on('message', message => {
-    if(!message.channel.guild) return;
-if (message.content.startsWith('Aping')) {
-if(!message.channel.guild) return;
-var msg = `${Date.now() - message.createdTimestamp}`
-var api = `${Math.round(client.ping)}`
-if (message.author.bot) return;
-let embed = new Discord.RichEmbed()
-.setAuthor(message.author.username,message.author.avatarURL)
-.setColor('RANDOM')
-.addField('**Time Taken:**',msg + " ms :signal_strength: ")
-.addField('**WebSocket:**',api + " ms :signal_strength: ")
-message.channel.send({embed:embed});
-}
-});
-
-
-
-
-
-
-  client.on('message', message => {
-   if(message.content.startsWith("#دعوات")) {
-    message.guild.fetchInvites().then(invs => {
-      let user = message.mentions.users.first() || message.author
-      let personalInvites = invs.filter(i => i.inviter.id === user.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-message.channel.send(`${user} لقد قمت بدعوه ${inviteCount} دعوه.`);
-});
-  }
-});
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-client.on('message', message => {
-  // Voice only works in guilds, if the message does not come from a guild,
-  // we ignore it
-  if (!message.guild) return;
-
-  if (message.content === '.join') {
-    // Only try to join the sender's voice channel if they are in one themselves
-    if (message.member.voiceChannel) {
-      message.member.voiceChannel.join()
-        .then(connection => { // Connection is an instance of VoiceConnection
-          message.reply('تم دخول الروم');
-        })
-        .catch(console.log);
-    } else {
-      message.reply('يجب ان تكون في رومات صوتية');
-    }
-  }
-});
-
-
-
-
-
 
    
 // THIS  MUST  BE  THIS  WAY
