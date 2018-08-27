@@ -26,7 +26,7 @@ client.on('ready', () => {
 console.log(`[M] ${client.users.size}`)
     client.user.setStatus("dnd")
 });
-const prefix = "1"
+const prefix = "6"
 client.on('message', async msg => { // eslint-disable-line
 	if (msg.author.bot) return undefined;
 	if (!msg.content.startsWith(prefix)) return undefined;
@@ -217,7 +217,7 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`بدء تشغيل : **${song.title}**`);
 }
 
-const adminprefix = "1";
+const adminprefix = "6";
 const devs = ['472052319006228509'];
 client.on('message', message => {
   var argresult = message.content.split(` `).slice(1).join(' ');
